@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+const API = 'https://tulime-backend-6ndn.onrender.com';
+
 const COLORS = {
   green: "#1D9E75", greenDark: "#0F6E56", greenLight: "#E1F5EE",
   amber: "#F5A623", amberLight: "#FAEEDA", bg: "#F7F5F0",
@@ -32,7 +34,7 @@ const css = `
   @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap');
   *{box-sizing:border-box;margin:0;padding:0;}
   body,#root{font-family:'DM Sans',sans-serif;background:#F7F5F0;color:#2C2C2A;min-height:100vh;}
-  .app{max-width:420px;margin:0 auto;min-height:100vh;background:#F7F5F0;overflow:hidden;}@media(min-width:768px){body,#root{background:#0F6E56;display:flex;justify-content:center;}.app{box-shadow:0 20px 60px rgba(0,0,0,0.3);border-radius:24px;margin:20px auto;min-height:calc(100vh - 40px);}}
+  .app{max-width:420px;margin:0 auto;min-height:100vh;background:#F7F5F0;overflow:hidden;}
   @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
   @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
   @keyframes slideIn{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:translateX(0)}}
@@ -155,7 +157,34 @@ export default function TulimeApp() {
   const [toast, setToast] = useState("");
 
   const showToast = (msg) => { setToast(msg); setTimeout(() => setToast(""), 3000); };
-  const submitReport = () => { setShowReport(false); setReportType(""); setReportNote(""); showToast("✓ Report submitted to extension officer"); };
+
+  const registerFarmer = async () => {
+    try {
+      const res = await fetch(`${API}/farmers/register`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form)
+      });
+      const data = await res.json();
+      console.log('Registered:', data);
+      showToast("✓ Profile saved successfully!");
+    } catch (err) {
+      console.log('Error:', err);
+    }
+  };
+
+  const submitReport = async () => {
+    try {
+      await fetch(`${API}/reports`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type: reportType, note: reportNote })
+      });
+    } catch (err) { console.log(err); }
+    setShowReport(false); setReportType(""); setReportNote("");
+    showToast("✓ Report submitted to extension officer");
+  };
+
   const canNext = () => {
     if (step === 1) return form.name.trim() && form.phone.trim();
     if (step === 2) return form.district;
@@ -236,7 +265,7 @@ export default function TulimeApp() {
                   )}
                 </div>
               )}
-              <button className="btn" disabled={!canNext()} onClick={() => step < 3 ? setStep(s => s + 1) : setScreen("dashboard")}>
+              <button className="btn" disabled={!canNext()} onClick={() => step < 3 ? setStep(s => s + 1) : (registerFarmer(), setScreen("dashboard"))}>
                 {step < 3 ? "Continue →" : "View my dashboard →"}
               </button>
             </div>
