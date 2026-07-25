@@ -37,14 +37,7 @@ Backend repository: https://github.com/ronah24/-tulime-backend
 
 ## Screenshots
 
-Add screenshots or a short demo GIF here to make the project easier to understand at a glance.
-
-Suggested screenshots:
-
-- Splash / welcome screen
-- Farmer registration flow
-- Advisory dashboard
-- Field report form
+Coming soon
 
 ## Run Locally
 
