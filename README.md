@@ -1,16 +1,73 @@
-# React + Vite
+Tulime
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Tulime is a climate-smart farming assistant for Zambian smallholder farmers. It helps farmers register their crop profile, view planting advisories, track seasonal windows, and report field conditions to extension officers.
 
-Currently, two official plugins are available:
+## Why I Built This
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+I built Tulime because farming decisions in Zambia are increasingly affected by changing rainfall patterns, delayed planting seasons, and limited access to timely agricultural guidance. The goal was to explore how a simple mobile-first web app could help farmers make better planting decisions using location, crop, seed, and weather advisory information.
 
-## React Compiler
+This project connects my interest in practical software, agriculture, and data-driven decision support. It is designed around a real user problem: helping farmers decide when to plant, what risks to watch, and how to share local field reports.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## What It Does
 
-## Expanding the ESLint configuration
+- Registers a farmer profile with name, phone number, district, crop, and seed variety
+- Shows farming advisories with clear risk levels and suggested actions
+- Displays a simple crop calendar for planting, growing, and harvest windows
+- Lets farmers submit field reports such as pest issues, drought signs, and crop conditions
+- Connects to a backend API for farmer registration and report submission
+- Uses a mobile-first interface because many target users would access the tool on a phone
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Tech Stack
+
+- React
+- Vite
+- JavaScript
+- CSS
+- Backend API hosted on Render
+
+Backend repository: https://github.com/ronah24/-tulime-backend
+
+## What I Learned
+
+- How to design a user flow around a specific audience instead of building a generic app
+- How to structure a React app with multiple screens and form state
+- How frontend forms connect to backend API endpoints using `fetch`
+- How small UI decisions, such as risk labels and action text, can make technical information easier to understand
+- How agriculture and climate data can be turned into practical decision-support features
+
+## Screenshots
+
+Add screenshots or a short demo GIF here to make the project easier to understand at a glance.
+
+Suggested screenshots:
+
+- Splash / welcome screen
+- Farmer registration flow
+- Advisory dashboard
+- Field report form
+
+## Run Locally
+
+```bash
+git clone https://github.com/ronah24/tulime.git
+cd tulime
+npm install
+npm run dev
+```
+
+Then open the local URL shown in your terminal.
+
+## Future Improvements
+
+- Add real weather and rainfall data by district
+- Add authentication for farmers and extension officers
+- Store advisory history per farmer
+- Add SMS or WhatsApp notifications for planting alerts
+- Build an extension officer dashboard for reviewing reports
+
+## Author
+
+Built by Ronah Mbewe.
+
+GitHub: https://github.com/ronah24
+
